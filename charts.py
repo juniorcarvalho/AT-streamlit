@@ -18,6 +18,19 @@ def _pitch_figure(title: str):
     return pitch, fig, ax
 
 
+def event_counts(events_df: pd.DataFrame) -> pd.DataFrame:
+    """Retorna a contagem de eventos em formato reutilizável pelas bibliotecas."""
+    if events_df.empty:
+        return pd.DataFrame(columns=["event_type", "count"])
+    return events_df["event_type"].value_counts().rename_axis("event_type").reset_index(name="count")
+
+
+def events_per_minute(events_df: pd.DataFrame) -> pd.DataFrame:
+    if events_df.empty:
+        return pd.DataFrame(columns=["minute", "events"])
+    return events_df.groupby("minute").size().rename("events").reset_index().sort_values("minute")
+
+
 def plot_pass_map(events_df: pd.DataFrame, team: str = ""):
     pitch, fig, ax = _pitch_figure(f"Mapa de passes — {team or 'todos os times'}")
     passes = _team_events(events_df, team).query("event_type == 'Pass'").dropna(subset=["x", "y", "end_x", "end_y"])

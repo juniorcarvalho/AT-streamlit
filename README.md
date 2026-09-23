@@ -1,8 +1,16 @@
 # Dashboard de Futebol com Streamlit
 
-Dashboard didático de Sports Analytics com dados abertos da StatsBomb. A aplicação permite selecionar campeonato, temporada e partida para analisar eventos, passes, finalizações e indicadores simples.
+Dashboard didático de Sports Analytics com dados abertos da StatsBomb. A pergunta analítica é: como os eventos, passes e finalizações ajudam a explicar o desempenho das equipes em uma partida?
 
-O Streamlit foi escolhido por permitir criar uma interface interativa em Python com pouco código. A cada alteração de filtro, o script é executado novamente; o cache evita consultas repetidas e o estado da sessão preserva os filtros ativos.
+A aplicação permite selecionar campeonato, temporada e partida. Os dados são buscados na StatsBombPy, normalizados e mantidos em cache para evitar consultas repetidas.
+
+## Análise da partida
+
+Na barra lateral, o formulário reúne filtros de jogador, intervalo de minutos, tipo de evento, busca textual, equipe dos mapas, limite de eventos visíveis e coordenadas na tabela. Os filtros são aplicados ao clicar em `Aplicar filtros` e permanecem durante os reruns da aplicação.
+
+Os cards mostram gols, finalizações, passes completos e conversão. A aba de gráficos inclui distribuição e ritmo de eventos com gráficos nativos do Streamlit, mapas de passes e finalizações com mplsoccer e gráficos de relação entre estatísticas com Matplotlib e Seaborn. Os indicadores e gráficos usam todo o recorte filtrado; a tabela e o download CSV respeitam apenas o limite de eventos exibidos.
+
+A segunda página oferece uma comparação opcional de até dois jogadores, com passes, acerto de passe, finalizações e gols no mesmo recorte analítico.
 
 ## Tecnologias
 
@@ -25,7 +33,9 @@ streamlit run app.py
 
 ## Organização
 
-- `app.py`: interface, filtros, estado da sessão e apresentação;
+- `app.py`: configuração global e roteamento nativo;
+- `pages/`: entradas das páginas de análise e comparação;
+- `views/`: filtros, estado compartilhado e apresentação reutilizável;
 - `data_loader.py`: consulta e normalização dos eventos;
 - `charts.py`: mapas e gráficos;
 - `utils.py`: formatação e download CSV;
