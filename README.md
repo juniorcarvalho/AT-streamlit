@@ -12,6 +12,11 @@ Os cards mostram gols, finalizações, passes completos e conversão. A aba de g
 
 A segunda página oferece uma comparação opcional de até dois jogadores, com passes, acerto de passe, finalizações e gols no mesmo recorte analítico.
 
+
+# Url streamlit cloud
+
+https://at-stream-lit-jr.streamlit.app/
+
 ## Tecnologias
 
 - Streamlit para interface e filtros;

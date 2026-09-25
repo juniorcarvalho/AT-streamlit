@@ -70,7 +70,6 @@ def load_match_events(match_id: int) -> pd.DataFrame:
 
 
 def normalize_events(events_df: pd.DataFrame) -> pd.DataFrame:
-    """Normaliza os eventos achatados da StatsBombPy para as colunas usadas no dashboard."""
     if events_df is None or events_df.empty:
         return _empty_events()
     df = events_df.copy()

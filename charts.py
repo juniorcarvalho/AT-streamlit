@@ -19,7 +19,6 @@ def _pitch_figure(title: str):
 
 
 def event_counts(events_df: pd.DataFrame) -> pd.DataFrame:
-    """Retorna a contagem de eventos em formato reutilizável pelas bibliotecas."""
     if events_df.empty:
         return pd.DataFrame(columns=["event_type", "count"])
     return events_df["event_type"].value_counts().rename_axis("event_type").reset_index(name="count")
